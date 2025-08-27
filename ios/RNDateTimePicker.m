@@ -23,13 +23,11 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
   if ((self = [super initWithFrame:frame])) {
-    #ifndef RCT_NEW_ARCH_ENABLED
-      // somehow, with Fabric, the callbacks are executed here as well as in RNDateTimePickerComponentView
-      // so do not register it with Fabric, to avoid potential problems
-      [self addTarget:self action:@selector(didChange)
-               forControlEvents:UIControlEventValueChanged];
-      [self addTarget:self action:@selector(onDismiss:) forControlEvents:UIControlEventEditingDidEnd];
-    #endif
+    // somehow, with Fabric, the callbacks are executed here as well as in RNDateTimePickerComponentView
+    // so do not register it with Fabric, to avoid potential problems
+    [self addTarget:self action:@selector(didChange)
+             forControlEvents:UIControlEventValueChanged];
+    [self addTarget:self action:@selector(onDismiss:) forControlEvents:UIControlEventEditingDidEnd];
 
     _reactMinuteInterval = 1;
   }
